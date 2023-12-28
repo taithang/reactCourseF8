@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React JS</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18.0.0/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18.0.0/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      //PostItem.js
+      function PostItem({ title, description, publishedAt, image }) {
+        return (
+          <div className="post-item">
+            <img src={image} alt={title} />
+            <h2 className="post-title">{title}</h2>
+            <p className="post-desc">{description}</p>
+            <p className="post-published">{publishedAt}</p>
+          </div>
+        );
+      }
+
+      //App.js
+      function App() {
+        return (
+          <div id="wrapper">
+            <PostItem
+              title="1 C#(.NET) - Tương tác với file excel"
+              image="https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png"
+              description="1 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với
+              file excel"
+              publishedAt="1 Một ngày trước . 5 phút đọc"
+            />
+            <PostItem
+              title="2 C#(.NET) - Tương tác với file excel"
+              image="https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png"
+              description="2 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với
+              file excel"
+              publishedAt="2 Một ngày trước . 5 phút đọc"
+            />
+            <PostItem
+              title="3 C#(.NET) - Tương tác với file excel"
+              image="https://files.fullstack.edu.vn/f8-prod/courses/21/63e1bcbaed1dd.png"
+              description="3 Bạn có kiến thức ngôn ngữ C#! Bạn muốn thực hiện tương tác với
+              file excel"
+              publishedAt="3 Một ngày trước . 5 phút đọc"
+            />
+          </div>
+        );
+      }
+
+      //index.js
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
