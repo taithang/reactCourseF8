@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useReducer, useRef, useState } from "react";
 import Content from "./Content";
 
 // const gifts = ["CPU i9", "RAM 32GB RGB", "RGB Keyboard"];
@@ -9,6 +9,20 @@ import Content from "./Content";
 //   { id: 3, name: "ReactJS" },
 // ];
 
+//useReducer example
+const initState = 0;
+const UP_ACTION = "Up";
+const DOWN_ACTION = "Down";
+const reducer = (state, action) => {
+  switch (action) {
+    case UP_ACTION:
+      return state + 1;
+    case DOWN_ACTION:
+      return state - 1;
+    default:
+      throw new Error("Invalid action");
+  }
+};
 function App() {
   // const [counter, setCounter] = useState(1);
   // function handleIncrease() {
@@ -105,13 +119,66 @@ function App() {
   //     </ul>
   //   </div>
   // );
-
   //Mounted/Unmounted
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
+  // return (
+  //   <div style={{ padding: 32 }}>
+  //     <button onClick={() => setShow(!show)}>Toggle</button>
+  //     {show && <Content />}
+  //   </div>
+  // );
+  //useMemo example
+  // const [name, setName] = useState("");
+  // const [price, setPrice] = useState("");
+  // const [products, setProducts] = useState([]);
+  // const nameRef = useRef();
+  // function handleSubmit() {
+  //   setProducts([...products, { name, price: +price }]);
+  //   setName("");
+  //   setPrice("");
+  //   nameRef.current.focus();
+  // }
+  // const total = useMemo(() => {
+  //   const result = products.reduce((result, prod) => {
+  //     return result + prod.price;
+  //   }, 0);
+  //   return result;
+  // }, [products]);
+  // return (
+  //   <div style={{ padding: "18px 32px" }}>
+  //     <input
+  //       ref={nameRef}
+  //       value={name}
+  //       placeholder="Enter name..."
+  //       onChange={(e) => setName(e.target.value)}
+  //     />
+  //     <br />
+  //     <input
+  //       value={price}
+  //       placeholder="Enter price..."
+  //       onChange={(e) => setPrice(e.target.value)}
+  //     />
+  //     <br />
+  //     <button onClick={handleSubmit}>Add</button>
+  //     <br />
+  //     Total: {total}
+  //     <ul>
+  //       {products.map((product, index) => (
+  //         <li key={index}>
+  //           {product.name} - {product.price}
+  //         </li>
+  //       ))}
+  //     </ul>
+  //   </div>
+  // );
+  //useReducer example
+
+  const [count, dispatch] = useReducer(reducer, initState);
   return (
-    <div style={{ padding: 32 }}>
-      <button onClick={() => setShow(!show)}>Toggle</button>
-      {show && <Content />}
+    <div style={{ padding: "0 20px" }}>
+      <h1>{count}</h1>
+      <button onClick={() => dispatch(DOWN_ACTION)}>Down</button>
+      <button onClick={() => dispatch(UP_ACTION)}>Up</button>
     </div>
   );
 }
