@@ -10,11 +10,14 @@ const cx = classNames.bind(styles);
 
 const defaultFn = () => {};
 
-function Menu({ children, items = [], onChange = defaultFn }) {
+function Menu({
+  children,
+  items = [],
+  hideOnClick = false,
+  onChange = defaultFn,
+}) {
   const [history, setHistory] = useState([{ data: items }]);
-  console.log(history);
   const current = history[history.length - 1];
-  console.log(current);
   const renderItems = () => {
     return current.data.map((item, index) => {
       const isParent = !!item.children;
@@ -39,6 +42,7 @@ function Menu({ children, items = [], onChange = defaultFn }) {
       interactive
       delay={(0, 700)}
       offset={[12, 8]}
+      hideOnClick={hideOnClick}
       placement="bottom-end"
       render={(attrs) => (
         <div className={cx("menu-list")} tabIndex="-1" {...attrs}>
